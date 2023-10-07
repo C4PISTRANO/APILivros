@@ -6,7 +6,7 @@ Desenvolver uma API robusta e eficiente para o Sebo Online S.A., que permita o c
 A apresentação de seu texto (formatação, aparência, qualidade, etc), será avaliada, em paralelo ao conteúdo. Utilize figuras se julgar necessário. Os testes serão feitos via Postman.
 
 ## Ferramentas 🧰
-Node.js, Express, MongoDB (Mongoose) e que gerencia tokens por JWT.
+Node.js, Express, MongoDB (Mongoose), Postman e gerenciamento tokens por JWT.
 
 ## Desenvolvimento 👨‍💻
 Foram criadas rotas públicas e privadas, para validação da presença de autorização do token, que vai impedir quem não possui token, de acessar recursos privados, porém pode acessar endpoints públicos.
