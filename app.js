@@ -58,7 +58,7 @@ function checkToken(req, res, next) {
 
 
 /* Registrar usuário*/
-app.post('/auth/register', async (req, res) => {
+app.post('/users/signup', async (req, res) => {
 
     const { name, email, password, confirmpassword } = req.body
 
@@ -112,7 +112,7 @@ app.post('/auth/register', async (req, res) => {
 })
 
 /* Login de usuário */
-app.post("/auth/login", async (req, res) => {
+app.post("/users/login", async (req, res) => {
     const { email, password } = req.body
 
     /* validations */
