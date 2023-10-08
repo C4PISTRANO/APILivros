@@ -7,18 +7,18 @@ const jwt = require('jsonwebtoken')
 
 const app = express()
 
-/*Config JSON response */
+/*Configuração resposta JSON no Express */
 app.use(express.json())
 
 /* Model */
 const User = require('./models/User')
 
-/* Public Route - Open Route */
+/* Rota Publica */
 app.get('/', (req, res) => {
     res.status(200).json({ msg: 'Bem vindo ao Sebo Online!' })
 })
 
-/* Private Route */
+/* Rota Privada */
 app.get('/user/:id', checkToken, async (req, res) => {
 
     const id = req.params.id
@@ -57,12 +57,12 @@ function checkToken(req, res, next) {
 }
 
 
-/* Register User */
+/* Registrar usuário*/
 app.post('/auth/register', async (req, res) => {
 
     const { name, email, password, confirmpassword } = req.body
 
-    /* Validations */
+    /* Validações*/
     if (!name) {
         return res.status(422).json({ msg: 'Obrigatório inserir o nome!' })
     }
@@ -79,18 +79,18 @@ app.post('/auth/register', async (req, res) => {
         return res.status(422).json({ msg: 'As senhas são diferentes!' })
     }
 
-    /* Check user exists */
+    /* Cecagem se usuário existe */
     const userExists = await User.findOne({ email: email })
 
     if (userExists) {
         return res.status(422).json({ msg: 'E-mail já cadastrado, por favor utilize outro e-mail!' })
     }
 
-    /* Create password */
+    /* Criar password */
     const salt = await bcrypt.genSalt(12)
     const passwordHash = await bcrypt.hash(password, salt)
 
-    /* Create user */
+    /* Criar usuário */
     const user = new User({
         name,
         email,
@@ -111,7 +111,7 @@ app.post('/auth/register', async (req, res) => {
     }
 })
 
-/* Login User */
+/* Login de usuário */
 app.post("/auth/login", async (req, res) => {
     const { email, password } = req.body
 
@@ -159,7 +159,7 @@ app.post("/auth/login", async (req, res) => {
     }
 })
 
-/* Credentials */
+/* Credenciais */
 const dbUser = process.env.DB_USER
 const dbPassword = process.env.DB_PASS
 
@@ -172,4 +172,3 @@ mongoose
         console.log('Conectado ao banco!')
     })
     .catch((err) => console.log(err))
-
